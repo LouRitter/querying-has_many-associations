@@ -9,10 +9,10 @@ class Person < ActiveRecord::Base
   end
 
   def self.with_employees
-    joins(employees:).distinct
+    joins(:employees).distinct
   end
 
   def self.with_employees_order_by_location_name
-    from(Person.with_employees, :people).merge(Person.order_by_location_name)
+    from(Person.with_employees, :people).order_by_location_name
   end
 end
